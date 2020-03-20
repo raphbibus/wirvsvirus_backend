@@ -13,9 +13,13 @@ class StatsTest extends TestCase
     public function testExample()
     {
 
-        $response = $this->call('GET', '/users/abc/stats');
+        $user = factory('App\Client')->make();
+
+        $response = $this->call('GET', '/users/'.$user->username.'/stats');
         $this->assertObjectHasAttribute('points',$response->getData());
         $this->assertObjectHasAttribute('seconds',$response->getData());
+        $this->assertObjectHasAttribute('display_name',$response->getData());
+        $this->assertObjectHasAttribute('username',$response->getData());
 
     }
 }

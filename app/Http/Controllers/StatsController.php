@@ -7,9 +7,15 @@ class StatsController extends Controller
 
     public function show($username) {
 
+        $user = factory('App\Client')->make(
+            ['username' => $username]
+        );
+
         return response()->json([
-            'seconds' => rand(1,3000000),
-            'points' => rand(0,50000),
+            'display_name' => $user->display_name,
+            'seconds' => $user->seconds,
+            'points' => $user->points,
+            'username' => $user->username,
         ]);
 
     }

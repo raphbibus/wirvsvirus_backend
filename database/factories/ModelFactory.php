@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\User;
+use App\Client;
 use Faker\Generator as Faker;
 
 /*
@@ -16,9 +16,11 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(User::class, function (Faker $faker) {
+$factory->define(Client::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->email,
-    ];
+        'username' => $faker->userName,
+        'display_name' => $faker->name,
+        'seconds' => $faker->numberBetween(1,2000000),
+        'points' => $faker->numberBetween(10,20000)
+     ];
 });
