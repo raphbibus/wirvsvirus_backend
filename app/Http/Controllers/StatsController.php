@@ -1,19 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Client;
 
 class StatsController extends Controller
 {
 
     public function show($username) {
 
-        $user = factory('App\Client')->make(
-            ['username' => $username]
-        );
+        $client = Client::where('username',$username)->first();
 
         return response()->json([
-            'seconds' => $user->seconds,
-            'points' => $user->points,
+            'seconds' => $client->seconds,
+            'points' => $client->points,
         ]);
 
     }
