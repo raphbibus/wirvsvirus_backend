@@ -12,10 +12,8 @@ class StatsController extends Controller
         );
 
         return response()->json([
-            'display_name' => $user->display_name,
             'seconds' => $user->seconds,
             'points' => $user->points,
-            'username' => $user->username,
         ]);
 
     }

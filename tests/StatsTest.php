@@ -18,8 +18,6 @@ class StatsTest extends TestCase
         $response = $this->call('GET', '/users/'.$user->username.'/stats');
         $this->assertObjectHasAttribute('points',$response->getData());
         $this->assertObjectHasAttribute('seconds',$response->getData());
-        $this->assertObjectHasAttribute('display_name',$response->getData());
-        $this->assertObjectHasAttribute('username',$response->getData());
 
     }
 }
