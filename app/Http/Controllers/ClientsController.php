@@ -10,11 +10,7 @@ class ClientsController extends Controller
 
     public function show($username) {
 
-        $client = factory('App\Client')->make(
-            ['username' => $username]
-        );
-
-        return response()->json($client);
+        return response()->json(Client::where('username',$username)->first());
 
     }
 

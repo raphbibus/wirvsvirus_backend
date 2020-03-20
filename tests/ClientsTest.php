@@ -14,13 +14,15 @@ class ClientsTest extends TestCase
     public function testShowClient()
     {
 
-        $user = factory('App\Client')->make();
+        $user = factory('App\Client')->create();
 
         $response = $this->call('GET', '/users/'.$user->username);
         $this->assertObjectHasAttribute('points',$response->getData());
         $this->assertObjectHasAttribute('seconds',$response->getData());
         $this->assertObjectHasAttribute('display_name',$response->getData());
         $this->assertObjectHasAttribute('username',$response->getData());
+
+        $user->delete();
 
     }
 
