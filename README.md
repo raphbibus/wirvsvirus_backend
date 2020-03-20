@@ -11,7 +11,7 @@ https://wirvsvirus.agile-punks.com/
 GET users/<username>/stats
 ```
 
-```javascript
+```json
 {
     "seconds": 124513235,
     "points": 1341,
