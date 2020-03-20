@@ -10,7 +10,7 @@ class StatsTest extends TestCase
      *
      * @return void
      */
-    public function testExample()
+    public function testShowStats()
     {
 
         $user = factory('App\Client')->make();
