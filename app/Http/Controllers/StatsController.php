@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 class StatsController extends Controller
 {
 
-    public function show() {
+    public function show($username) {
 
         return response()->json([
             'seconds' => rand(1,3000000),

@@ -13,7 +13,7 @@ class StatsTest extends TestCase
     public function testExample()
     {
 
-        $response = $this->call('GET', '/stats');
+        $response = $this->call('GET', '/users/abc/stats');
         $this->assertObjectHasAttribute('points',$response->getData());
         $this->assertObjectHasAttribute('seconds',$response->getData());
 

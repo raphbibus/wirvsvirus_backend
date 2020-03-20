@@ -15,4 +15,4 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->get('stats', 'StatsController@show');
+$router->get('users/{username}/stats', 'StatsController@show');
