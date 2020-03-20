@@ -1,5 +1,10 @@
 # backend for stayathome
 
+## base url
+
+```
+https://wirvsvirus.agile-punks.com/
+```
 ## get user stats
 
 ```
