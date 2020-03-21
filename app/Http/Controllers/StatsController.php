@@ -57,7 +57,7 @@ class StatsController extends Controller
                 'token' => 'required|exists:inouts,token|size:32'
             ]);
 
-            $inOut = $client->inouts->where('token', $request->input('token'))->first();
+            $inOut = $client->inouts->where('token', $request->input('token'))->where('left', null)->first();
 
             if($inOut != null) {
                 $dt = Carbon::parse($request->input('timestamp'));
