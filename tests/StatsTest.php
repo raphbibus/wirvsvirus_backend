@@ -18,7 +18,7 @@ class StatsTest extends TestCase
         $response = $this->call('GET', '/users/'.$client->username.'/stats');
         $this->assertObjectHasAttribute('points',$response->getData());
         $this->assertObjectHasAttribute('seconds',$response->getData());
-
+        $this->assertEquals($response->getStatusCode(), 200);
         $client->delete();
 
     }

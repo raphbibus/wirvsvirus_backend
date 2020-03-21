@@ -10,7 +10,14 @@ class ClientsController extends Controller
 
     public function show($username) {
 
-        return response()->json(Client::where('username',$username)->first());
+        $client = Client::where('username',$username)->first();
+
+        if($client != null) {
+            return response()->json($client,200);
+        } else {
+            return response()->json([],404);
+        }
+
 
     }
 
@@ -27,7 +34,7 @@ class ClientsController extends Controller
 
         $client = Client::create($validated);
 
-        return response()->json($client);
+        return response()->json($client, 201);
 
     }
 
