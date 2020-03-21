@@ -1,10 +1,15 @@
 # backend for [stayathome](https://github.com/raphbibus/wirvsvirus)
 
+## table of contents
+
+1. [base url](#base-url)
+1. [api documentation](#api-documentation)
+    1. [account management](#account-management)
+        1. [get user stats](#get-user-stats)
+
 ## base url
 
-`
-https://wirvsvirus.agile-punks.com/
-`
+[wirvsvirus.agile-punks.com](https://wirvsvirus.agile-punks.com/)
 
 ## headers
 
@@ -12,13 +17,18 @@ required on post requests.
 `
 content-type: application/json
 `
-## get user stats
+
+## api documentation
+
+### account management
+
+#### get user stats
 
 ```
 GET users/<username>/stats
 ```
 
-```javascript
+```json5
 //response
 {
     "seconds": 124513235,
@@ -26,13 +36,13 @@ GET users/<username>/stats
 }
 ```
 
-## get user
+#### get user
 
 ```
 GET users/<username>
 ```
 
-```javascript
+```json5
 //response
 {
     "seconds": 124513235,
@@ -42,18 +52,21 @@ GET users/<username>
 }
 ```
 
-## create user
+#### create user
 
 ```
 POST users
 ```
 
-```javascript
+```json5
 // payload
 {
     "username": "<unique username>",
     "display_name": "<some display name>"
 }
+```
+
+```json5
 //response
 {
     "seconds": 0,
