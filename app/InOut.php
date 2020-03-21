@@ -22,6 +22,10 @@ class InOut extends Model
         'id', 'client_id'
     ];
 
+    protected $dates = [
+        'entered', 'left',
+    ];
+
     public function client()
     {
         return $this->belongsTo('App\Client');

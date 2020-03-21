@@ -28,7 +28,7 @@ content-type: application/json
 #### get user stats
 
 ```
-GET users/<username>/stats
+GET users/<username>/stats | 200 OK | 404 on not found
 ```
 
 ```json5
@@ -42,7 +42,7 @@ GET users/<username>/stats
 #### create entered home event
 
 ```
-POST users/<username>/home-enter
+POST users/<username>/home-enter | 201 Created | 422 on validation error | 404 on not found
 ```
 
 ```json5
@@ -62,10 +62,35 @@ POST users/<username>/home-enter
 }
 ```
 
+#### create left home event
+
+```
+POST users/<username>/home-leave | 201 Created | 422 on validation error | 404 on not found
+```
+
+```json5
+// payload
+{
+	"timestamp": "2020-03-21T15:50:22.000000Z",
+	"token": "9ce46249294e220f06434d57911a7c4a"
+}
+```
+
+```json5
+//response
+{
+    "entered": "2020-03-21T10:50:22.000000Z",
+    "left": "2020-03-21T15:50:22.000000Z",
+    "token": "9ce46249294e220f06434d57911a7c4a",
+    "created_at": "2020-03-21T14:43:30.000000Z",
+    "updated_at": "2020-03-21T14:44:44.000000Z"
+}
+```
+
 #### get user
 
 ```
-GET users/<username>
+GET users/<username> | 200 OK | 404 on not found
 ```
 
 ```json5
@@ -81,7 +106,7 @@ GET users/<username>
 #### create user
 
 ```
-POST users
+POST users | 201 Created | 422 on validation error
 ```
 
 ```json5
