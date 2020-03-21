@@ -14,6 +14,8 @@ class ClientsTest extends TestCase
         $this->assertObjectHasAttribute('seconds',$response->getData());
         $this->assertObjectHasAttribute('display_name',$response->getData());
         $this->assertObjectHasAttribute('username',$response->getData());
+        $this->assertObjectHasAttribute('nation',$response->getData());
+        $this->assertObjectHasAttribute('city',$response->getData());
         $this->assertEquals($response->getStatusCode(), 200);
         $client->delete();
     }
@@ -26,13 +28,22 @@ class ClientsTest extends TestCase
     }
 
     public function testStoreClient() {
-        $response = $this->call('POST', '/users', ['username' => 'johndoe', 'display_name' => 'John Doe']);
+        $response = $this->call('POST', '/users', ['username' => 'johndoe', 'display_name' => 'John Doe', 'nation' => 'Italien', 'city' => 'Rom']);
         $this->assertObjectHasAttribute('points',$response->getData());
         $this->assertObjectHasAttribute('seconds',$response->getData());
         $this->assertObjectHasAttribute('display_name',$response->getData());
         $this->assertObjectHasAttribute('username',$response->getData());
         $this->assertObjectHasAttribute('created_at',$response->getData());
         $this->assertObjectHasAttribute('updated_at',$response->getData());
+        $this->assertObjectHasAttribute('nation',$response->getData());
+        $this->assertObjectHasAttribute('city',$response->getData());
+        $client = $response->getData();
+        $this->assertTrue($client->username == 'johndoe');
+        $this->assertTrue($client->display_name == 'John Doe');
+        $this->assertTrue($client->points == 0);
+        $this->assertTrue($client->seconds == 0);
+        $this->assertTrue($client->nation == 'Italien');
+        $this->assertTrue($client->city == 'Rom');
         $this->assertEquals($response->getStatusCode(), 201);
         Client::where('username','johndoe')->delete();
     }

@@ -118,17 +118,23 @@ POST users | 201 Created | 422 on validation error
 // payload
 {
     "username": "<unique username>",
-    "display_name": "<some display name>"
+    "display_name": "<some display name>",
+    "nation": "Deutschland", //optional
+    "city": "Berlin" //optional
 }
 ```
 
 ```json5
 //response
 {
-    "seconds": 0,
+    "username": "raphbibus204",
+    "display_name": "Ralph",
     "points": 0,
-    "username": "<some username>",
-    "display_name": "<some display name>"
+    "seconds": 0,
+    "nation": "Deutschland",
+    "city": "Berlin",
+    "updated_at": "2020-03-21T19:41:02.000000Z",
+    "created_at": "2020-03-21T19:41:02.000000Z"
 }
 ```
 
