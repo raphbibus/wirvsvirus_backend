@@ -20,3 +20,4 @@ $router->get('users/{username}', 'ClientsController@show');
 $router->get('users/{username}/stats', 'StatsController@show');
 $router->post('users/{username}/home-enter', 'StatsController@homeEnter');
 $router->post('users/{username}/home-leave', 'StatsController@homeLeave');
+$router->get('leaderboard', 'LeaderboardController@show');

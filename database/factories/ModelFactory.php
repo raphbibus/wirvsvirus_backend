@@ -22,7 +22,9 @@ $factory->define(Client::class, function (Faker $faker) {
         'username' => $faker->userName,
         'display_name' => $faker->name,
         'seconds' => $faker->numberBetween(1,2000000),
-        'points' => $faker->numberBetween(10,20000)
+        'points' => $faker->numberBetween(10,200000),
+        'nation' => $faker->country,
+        'city' => $faker->city
      ];
 });
 
