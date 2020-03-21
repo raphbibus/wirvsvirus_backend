@@ -3,6 +3,7 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Client;
+use App\InOut;
 use Faker\Generator as Faker;
 
 /*
@@ -23,4 +24,16 @@ $factory->define(Client::class, function (Faker $faker) {
         'seconds' => $faker->numberBetween(1,2000000),
         'points' => $faker->numberBetween(10,20000)
      ];
+});
+
+$factory->define(InOut::class, function (Faker $faker) {
+
+    $client = Client::all()->random(1);
+
+    return [
+        'entered' => $faker->dateTimeBetween('-1 day', 'now'),
+        'client_id' => $client[0]->id,
+        'token' => md5('your mom'.$client[0]->id.rand(0,20)),
+    ];
+
 });
