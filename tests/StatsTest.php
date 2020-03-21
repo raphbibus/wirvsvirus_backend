@@ -22,4 +22,27 @@ class StatsTest extends TestCase
         $client->delete();
 
     }
+
+    public function testStatsCheckin() {
+        $client = factory('App\Client')->create();
+        $response = $this->call('POST', '/users/'.$client->username.'/home-enter', ['timestamp' => '2020-03-21T10:50:22.000000Z']);
+        $this->assertEquals($response->getStatusCode(), 201);
+        $this->assertObjectHasAttribute('entered',$response->getData());
+        $client->delete();
+    }
+
+    public function testStatsCheckinClientNotExists() {
+        $client = factory('App\Client')->make();
+        $response = $this->call('POST', '/users/'.$client->username.'/home-enter', ['timestamp' => '2020-03-21T10:50:22.000000Z']);
+        $this->assertEquals($response->getStatusCode(), 404);
+    }
+
+    public function testStatsCheckinWrongFormat() {
+        $client = factory('App\Client')->create();
+        $response = $this->call('POST', '/users/'.$client->username.'/home-enter', ['timestamp' => 'shingshong']);
+        $this->assertEquals($response->getStatusCode(), 422);
+        $client->delete();
+    }
+
+
 }

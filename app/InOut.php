@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Client extends Model
+class InOut extends Model
 {
 
-    protected $table = 'clients';
+    protected $table = 'inouts';
 
     /**
      * The attributes that are mass assignable.
@@ -15,16 +15,16 @@ class Client extends Model
      * @var array
      */
     protected $fillable = [
-        'username', 'display_name', 'points', 'seconds',
+
     ];
 
     protected $hidden = [
-        'id',
+        'id', 'client_id'
     ];
 
-    public function inouts()
+    public function client()
     {
-        return $this->hasMany('App\InOut');
+        return $this->belongsTo('App\Client');
     }
 
 }

@@ -39,6 +39,29 @@ GET users/<username>/stats
 }
 ```
 
+#### create entered home event
+
+```
+POST users/<username>/home-enter
+```
+
+```json5
+// payload
+{
+    "timestamp": "2020-03-21T10:50:22.000000Z"
+}
+```
+
+```json5
+//response
+{
+    "entered": "2020-03-21 10:50:22",
+    "token": "9ce46249294e220f06434d57911a7c4a", //used for home-leave reference
+    "updated_at": "2020-03-21T11:33:36.000000Z",
+    "created_at": "2020-03-21T11:33:36.000000Z"
+}
+```
+
 #### get user
 
 ```
