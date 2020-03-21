@@ -36,7 +36,7 @@ class StatsController extends Controller
             $inOut = new InOut();
             $inOut->entered = $dt->toDateTimeString();
             $inOut->client_id = $client->id;
-            $inOut->token = md5($dt->toDateTimeString().$client->username);
+            $inOut->token = md5($dt->toDateTimeString().$client->username.rand(0,1000));
             $inOut->save();
 
             return response()->json($inOut, 201);
