@@ -2,11 +2,19 @@
 
 namespace App\Services;
 use Carbon\Carbon;
+use App\Client;
 
 class PointsService {
 
     public function __construct() {
 
+    }
+
+    public function updatePointsAndSeconds(Client $client, Carbon $entered, Carbon $left) {
+        $client->points = $client->points + $this->calculatePoints($entered,$left);
+        $client->seconds = $client->seconds + $entered->diffInSeconds($left);
+        $client->save();
+        return $client;
     }
 
     public function calculatePoints(Carbon $entered, Carbon $left) {

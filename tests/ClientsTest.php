@@ -8,21 +8,21 @@ class ClientsTest extends TestCase
 {
 
     public function testShowClient() {
-        $user = factory('App\Client')->create();
-        $response = $this->call('GET', '/users/'.$user->username);
+        $client = factory('App\Client')->create();
+        $response = $this->call('GET', '/users/'.$client->username);
         $this->assertObjectHasAttribute('points',$response->getData());
         $this->assertObjectHasAttribute('seconds',$response->getData());
         $this->assertObjectHasAttribute('display_name',$response->getData());
         $this->assertObjectHasAttribute('username',$response->getData());
         $this->assertEquals($response->getStatusCode(), 200);
-        $user->delete();
+        $client->delete();
     }
 
     public function testShowClientDoesNotExist() {
-        $user = factory('App\Client')->make();
-        $response = $this->call('GET', '/users/'.$user->username);
+        $client = factory('App\Client')->make();
+        $response = $this->call('GET', '/users/'.$client->username);
         $this->assertEquals($response->getStatusCode(), 404);
-        $user->delete();
+        $client->delete();
     }
 
     public function testStoreClient() {

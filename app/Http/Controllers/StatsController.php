@@ -6,6 +6,7 @@ use App\InOut;
 use Carbon\Carbon;
 use Str;
 use Illuminate\Http\Request;
+use App\Services\PointsService;
 
 class StatsController extends Controller
 {
@@ -60,9 +61,14 @@ class StatsController extends Controller
             $inOut = $client->inouts->where('token', $request->input('token'))->where('left', null)->first();
 
             if($inOut != null) {
-                $dt = Carbon::parse($request->input('timestamp'));
-                $inOut->left = $dt->toDateTimeString();
+                $dtEntered = Carbon::parse($inOut->entered);
+                $dtLeft = Carbon::parse($request->input('timestamp'));
+                $inOut->left = $dtLeft->toDateTimeString();
                 $inOut->save();
+
+                $pointsService = new PointsService();
+                $pointsService->updatePointsAndSeconds($client, $dtEntered, $dtLeft);
+
                 return response()->json($inOut, 201);
             } else {
                 return response()->json([], 404);

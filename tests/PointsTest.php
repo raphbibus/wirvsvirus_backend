@@ -17,8 +17,35 @@ class PointsTest extends TestCase
         $this->assertArrayHasKey('bonus', config('points'));
         $this->assertTrue(class_exists(App\Services\PointsService::class));
         $this->assertTrue(method_exists(App\Services\PointsService::class, 'calculatePoints'));
+        $this->assertTrue(method_exists(App\Services\PointsService::class, 'updatePointsAndSeconds'));
         $this->assertArrayHasKey('12_hours', config('points.bonus'));
         $this->assertArrayHasKey('48_hours', config('points.bonus'));
+    }
+
+    public function testUpdatePointsAndSeconds() {
+        $client = factory('App\Client')->create();
+        $pointsService = new PointsService();
+        $dtEntered = Carbon::now();
+        $dtEntered->subHour();
+        $dtLeft = Carbon::now();
+        $this->assertTrue($pointsService->updatePointsAndSeconds($client, $dtEntered, $dtLeft) instanceof App\Client);
+        $client->delete();
+
+        $client = factory('App\Client')->create();
+        $pointsService = new PointsService();
+        $dtEntered = Carbon::now();
+        $dtEntered->subHour();
+        $dtLeft = Carbon::now();
+
+        $pointsBefore = $client->points;
+        $secondsBefore = $client->seconds;
+
+        $pointsService->updatePointsAndSeconds($client, $dtEntered, $dtLeft);
+
+        $this->assertTrue($client->points == $pointsBefore + 60 * config('points.per_minute'));
+        $this->assertTrue($client->seconds == $secondsBefore + 60 * 60);
+
+        $client->delete();
     }
 
     public function testCalculatePoints() {
