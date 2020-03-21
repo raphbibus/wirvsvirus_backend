@@ -6,6 +6,10 @@
 1. [api documentation](#api-documentation)
     1. [account management](#account-management)
         1. [get user stats](#get-user-stats)
+        1. [create entered home event](#create-entered-home-event)
+        1. [create left home event](#create-left-home-event)
+        1. [get user](#get-user)
+        1. [create user](#create-user)
 
 ## base url
 
