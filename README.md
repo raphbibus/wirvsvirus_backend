@@ -2,9 +2,16 @@
 
 ## base url
 
-```
+`
 https://wirvsvirus.agile-punks.com/
-```
+`
+
+## headers
+
+required on post requests.
+`
+content-type: application/json
+`
 ## get user stats
 
 ```
