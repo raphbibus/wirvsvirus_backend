@@ -18,8 +18,20 @@ class PointsTest extends TestCase
         $this->assertTrue(class_exists(App\Services\PointsService::class));
         $this->assertTrue(method_exists(App\Services\PointsService::class, 'calculatePoints'));
         $this->assertTrue(method_exists(App\Services\PointsService::class, 'updatePointsAndSeconds'));
+        $this->assertTrue(method_exists(App\Services\PointsService::class, 'addPointsToClient'));
         $this->assertArrayHasKey('12_hours', config('points.bonus'));
         $this->assertArrayHasKey('48_hours', config('points.bonus'));
+    }
+
+    public function testAddPointsToClient() {
+        $client = factory('App\Client')->create();
+        $pointsService = new PointsService();
+        $pointsBefore = $client->points;
+        $pointsToAdd = 150;
+        $this->assertTrue($pointsService->addPointsToClient($client,0) instanceof App\Client);
+        $pointsService->addPointsToClient($client,$pointsToAdd);
+        $this->assertTrue($client->points == $pointsBefore + $pointsToAdd);
+        $client->delete();
     }
 
     public function testUpdatePointsAndSeconds() {

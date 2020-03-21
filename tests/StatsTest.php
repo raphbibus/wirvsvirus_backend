@@ -24,6 +24,32 @@ class StatsTest extends TestCase
 
     }
 
+    public function testStatsAddPoints() {
+        $this->assertTrue(method_exists(App\Http\Controllers\StatsController::class, 'pointsAdd'));
+        $client = factory('App\Client')->create();
+        $pointsBefore = $client->points;
+        $pointsToAdd = 50;
+        $response = $this->call('POST', '/users/'.$client->username.'/points-add', ['points' => $pointsToAdd]);
+        $this->assertEquals($response->getStatusCode(), 201);
+        $this->assertObjectHasAttribute('points',$response->getData());
+        $data = $response->getData();
+        $this->assertTrue($data->points == $pointsBefore + $pointsToAdd);
+        $client->delete();
+    }
+
+    public function testStatsAddPointsClientNotExists() {
+        $client = factory('App\Client')->make();
+        $response = $this->call('POST', '/users/'.$client->username.'/points-add', ['points' => 50]);
+        $this->assertEquals($response->getStatusCode(), 404);
+    }
+
+    public function testStatsAddPointsInvalidNumber() {
+        $client = factory('App\Client')->create();
+        $response = $this->call('POST', '/users/'.$client->username.'/points-add', ['points' => 50.2]);
+        $this->assertEquals($response->getStatusCode(), 422);
+        $client->delete();
+    }
+
     public function testStatsCheckin() {
         $client = factory('App\Client')->create();
         $response = $this->call('POST', '/users/'.$client->username.'/home-enter', ['timestamp' => '2020-03-21T10:50:22.000000Z']);

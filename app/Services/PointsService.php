@@ -30,6 +30,12 @@ class PointsService {
 
     }
 
+    public function addPointsToClient(Client $client, int $points) {
+        $client->points = $client->points + $points;
+        $client->save();
+        return $client;
+    }
+
     private function twelveHoursBonus($diffInMinutes) {
         $times = $diffInMinutes / 720;
         if($times >= 1) {

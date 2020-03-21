@@ -22,6 +22,27 @@ class StatsController extends Controller
 
     }
 
+    public function pointsAdd(Request $request, $username) {
+
+        $client = Client::where('username',$username)->first();
+
+        if($client != null) {
+
+            $this->validate($request, [
+                'points' => 'required|integer',
+            ]);
+
+            $client->points = $client->points + $request->input('points');
+            $client->save();
+
+            return response()->json($client, 201);
+
+        } else {
+            return response()->json([], 404);
+        }
+
+    }
+
     public function homeEnter(Request $request, $username) {
 
         $client = Client::where('username',$username)->first();

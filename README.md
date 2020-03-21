@@ -10,6 +10,7 @@
         3. [create left home event](#create-left-home-event)
         4. [get user](#get-user)
         5. [create user](#create-user)
+        6. [add points](#add-points)
     2. [leaderboard](#leaderboard)
 
 ## base url
@@ -135,6 +136,33 @@ POST users | 201 Created | 422 on validation error
     "city": "Berlin",
     "updated_at": "2020-03-21T19:41:02.000000Z",
     "created_at": "2020-03-21T19:41:02.000000Z"
+}
+```
+
+#### add points
+
+```
+POST users/<username>/points-add | 201 Created | 422 on validation error | 404 on not found
+```
+
+```json5
+// payload
+{
+    "points": 400 //some integer
+}
+```
+
+```json5
+//response
+{
+    "username": "raphbibus204",
+    "display_name": "Ralph",
+    "created_at": "2020-03-21T21:30:31.000000Z",
+    "updated_at": "2020-03-21T21:30:55.000000Z",
+    "seconds": 0,
+    "points": 3400,
+    "nation": "Deutschland",
+    "city": "Berlin"
 }
 ```
 
