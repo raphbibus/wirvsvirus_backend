@@ -4,8 +4,7 @@ use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 use App\Client;
 
-class ClientsTest extends TestCase
-{
+class ClientsTest extends TestCase {
 
     public function testClientsControllerAndModel() {
         $this->assertTrue(class_exists(App\Http\Controllers\ClientsController::class));

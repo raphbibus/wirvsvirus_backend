@@ -5,13 +5,8 @@ use Laravel\Lumen\Testing\DatabaseTransactions;
 use App\Services\PointsService;
 use Carbon\Carbon;
 
-class PointsTest extends TestCase
-{
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
+class PointsTest extends TestCase {
+
     public function testPointsService() {
         $this->assertArrayHasKey('per_minute', config('points'));
         $this->assertArrayHasKey('bonus', config('points'));

@@ -5,8 +5,7 @@ use Laravel\Lumen\Testing\DatabaseTransactions;
 use App\Client;
 use Carbon\Carbon;
 
-class LeaderboardTest extends TestCase
-{
+class LeaderboardTest extends TestCase {
 
     public function testLeaderboardController() {
         $this->assertTrue(class_exists(App\Http\Controllers\LeaderboardController::class));

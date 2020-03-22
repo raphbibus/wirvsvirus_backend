@@ -4,8 +4,7 @@ use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 use App\Client;
 
-class StatsTest extends TestCase
-{
+class StatsTest extends TestCase {
 
     public function testStatsController() {
         $this->assertTrue(class_exists(App\InOut::class));
@@ -16,17 +15,13 @@ class StatsTest extends TestCase
         $this->assertTrue(method_exists(App\Http\Controllers\StatsController::class, 'homeLeave'));
     }
 
-    public function testShowStats()
-    {
-
+    public function testShowStats() {
         $client = factory('App\Client')->create();
-
         $response = $this->call('GET', '/users/'.$client->username.'/stats');
         $this->assertObjectHasAttribute('points',$response->getData());
         $this->assertObjectHasAttribute('seconds',$response->getData());
         $this->assertEquals($response->getStatusCode(), 200);
         $client->delete();
-
     }
 
     public function testStatsAddPoints() {
