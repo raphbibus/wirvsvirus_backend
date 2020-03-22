@@ -15,6 +15,8 @@
         1. [create user](#create-user)
         1. [add points](#add-points)
     1. [leaderboard](#leaderboard)
+        1. [get leaderboard](#get-leaderboard)
+        1. [get leaderboard by nation](#get-leaderboard-by-nation)
 
 ## setup
 
