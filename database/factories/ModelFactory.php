@@ -19,13 +19,13 @@ use Faker\Generator as Faker;
 
 $factory->define(Client::class, function (Faker $faker) {
 
-    $nation = $faker->randomElement(['Deutschland', 'Italien', 'Spanien']);
+    $nation = $faker->randomElement(['de', 'it', 'es']);
 
     switch ($nation) {
-        case 'Deutschland':
+        case 'de':
             $city =  $faker->randomElement(['Berlin', 'Treppendorf', 'München']);
             break;
-        case 'Italien':
+        case 'it':
             $city =  $faker->randomElement(['Rom', 'Neapel', 'Venedig']);
             break;
         default:

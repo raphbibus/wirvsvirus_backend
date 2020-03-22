@@ -13,4 +13,9 @@ class LeaderboardController extends Controller
         return response()->json($clients, 200);
     }
 
+    public function showByNation(Request $request, $nation) {
+        $clients = Client::where('nation',$nation)->orderBy('points','desc')->paginate(20);
+        return response()->json($clients, 200);
+    }
+
 }

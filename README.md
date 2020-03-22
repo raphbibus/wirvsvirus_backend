@@ -210,7 +210,7 @@ GET leaderboard | 200 OK
             "nation": "id",
             "city": "West Kaelynchester"
         },
-        //further results...
+        //further results, 20 per page
         {
             "username": "luigi39",
             "display_name": "Katarina Feeney",
@@ -232,5 +232,51 @@ GET leaderboard | 200 OK
     "prev_page_url": null,
     "to": 20,
     "total": 54
+}
+```
+
+#### get leaderboard by nation
+
+```
+GET leaderboard/nation/<simple locale> | 200 OK
+```
+A simple locale would be "de" for Germany or "it" for Italy.
+
+```json5
+{
+    "current_page": 1,
+    "data": [
+        {
+            "username": "stoltenberg.lawrence",
+            "display_name": "Tomas Veum",
+            "created_at": "2020-03-22T11:06:17.000000Z",
+            "updated_at": "2020-03-22T11:06:17.000000Z",
+            "seconds": 233405,
+            "points": 194177,
+            "nation": "de",
+            "city": "München"
+        },
+        //further results, 20 per page
+        {
+            "username": "joaquin.kutch",
+            "display_name": "Merle Schoen III",
+            "created_at": "2020-03-22T11:06:17.000000Z",
+            "updated_at": "2020-03-22T11:06:17.000000Z",
+            "seconds": 524157,
+            "points": 91921,
+            "nation": "de",
+            "city": "Treppendorf"
+        }
+    ],
+    "first_page_url": "https://wirvsvirus.agile-punks.com/leaderboard/nation/de?page=1",
+    "from": 1,
+    "last_page": 2,
+    "last_page_url": "https://wirvsvirus.agile-punks.com/leaderboard/nation/de?page=2",
+    "next_page_url": "https://wirvsvirus.agile-punks.com/leaderboard/nation/de?page=2",
+    "path": "https://wirvsvirus.agile-punks.com/leaderboard/nation/de",
+    "per_page": 20,
+    "prev_page_url": null,
+    "to": 20,
+    "total": 36
 }
 ```

@@ -22,3 +22,4 @@ $router->post('users/{username}/home-enter', 'StatsController@homeEnter');
 $router->post('users/{username}/home-leave', 'StatsController@homeLeave');
 $router->post('users/{username}/points-add', 'StatsController@pointsAdd');
 $router->get('leaderboard', 'LeaderboardController@show');
+$router->get('leaderboard/nation/{nation}', 'LeaderboardController@showByNation');

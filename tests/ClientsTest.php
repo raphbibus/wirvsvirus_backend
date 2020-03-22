@@ -28,7 +28,7 @@ class ClientsTest extends TestCase
     }
 
     public function testStoreClient() {
-        $response = $this->call('POST', '/users', ['username' => 'johndoe', 'display_name' => 'John Doe', 'nation' => 'Italien', 'city' => 'Rom']);
+        $response = $this->call('POST', '/users', ['username' => 'johndoe', 'display_name' => 'John Doe', 'nation' => 'it', 'city' => 'Rom']);
         $this->assertObjectHasAttribute('points',$response->getData());
         $this->assertObjectHasAttribute('seconds',$response->getData());
         $this->assertObjectHasAttribute('display_name',$response->getData());
@@ -42,7 +42,7 @@ class ClientsTest extends TestCase
         $this->assertTrue($client->display_name == 'John Doe');
         $this->assertTrue($client->points == 0);
         $this->assertTrue($client->seconds == 0);
-        $this->assertTrue($client->nation == 'Italien');
+        $this->assertTrue($client->nation == 'it');
         $this->assertTrue($client->city == 'Rom');
         $this->assertEquals($response->getStatusCode(), 201);
         Client::where('username','johndoe')->delete();
