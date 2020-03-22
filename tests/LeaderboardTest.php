@@ -42,10 +42,10 @@ class LeaderboardTest extends TestCase
             $this->assertTrue($page[$i]->points >= $page[$i+1]->points);
             $this->assertTrue($page[$i]->nation == $nationToTest);
         }
-        // $clients = Client::all();
-        // foreach($clients as $client) {
-        //     $client->delete();
-        // }
+        $clients = Client::all();
+        foreach($clients as $client) {
+            $client->delete();
+        }
     }
 
 }
