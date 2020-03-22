@@ -142,7 +142,7 @@ POST users | 201 Created | 422 on validation error
 {
     "username": "<unique username>",
     "display_name": "<some display name>",
-    "nation": "Deutschland", //optional
+    "nation": "de", //optional country code
     "city": "Berlin" //optional
 }
 ```
@@ -154,7 +154,7 @@ POST users | 201 Created | 422 on validation error
     "display_name": "Ralph",
     "points": 0,
     "seconds": 0,
-    "nation": "Deutschland",
+    "nation": "de",
     "city": "Berlin",
     "updated_at": "2020-03-21T19:41:02.000000Z",
     "created_at": "2020-03-21T19:41:02.000000Z"
@@ -183,7 +183,7 @@ POST users/<username>/points-add | 201 Created | 422 on validation error | 404 o
     "updated_at": "2020-03-21T21:30:55.000000Z",
     "seconds": 0,
     "points": 3400,
-    "nation": "Deutschland",
+    "nation": "de",
     "city": "Berlin"
 }
 ```
@@ -207,7 +207,7 @@ GET leaderboard | 200 OK
             "updated_at": "2020-03-21T19:27:40.000000Z",
             "seconds": 34399,
             "points": 196153,
-            "nation": "Indonesia",
+            "nation": "id",
             "city": "West Kaelynchester"
         },
         //further results...
@@ -218,7 +218,7 @@ GET leaderboard | 200 OK
             "updated_at": "2020-03-21T19:27:40.000000Z",
             "seconds": 1242550,
             "points": 115899,
-            "nation": "Brunei Darussalam",
+            "nation": "ms",
             "city": "Caseyberg"
         }
     ],
