@@ -129,7 +129,11 @@ GET users/<username> | 200 OK | 404 on not found
     "seconds": 124513235,
     "points": 1341,
     "username": "<some username>",
-    "display_name": "<some display name>"
+    "display_name": "<some display name>",
+    "created_at": "2020-03-21T09:32:39.000000Z",
+    "updated_at": "2020-03-21T09:32:39.000000Z",
+    "nation": "Deutschland",
+    "city": "Berlin"
 }
 ```
 
