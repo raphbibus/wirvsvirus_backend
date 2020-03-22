@@ -2,6 +2,9 @@
 
 ## table of contents
 
+1. [setup](#setup)
+    1. [installation](#installation)
+    1. [conventions](#conventions)
 1. [base url](#base-url)
 1. [api documentation](#api-documentation)
     1. [account management](#account-management)
@@ -12,6 +15,25 @@
         1. [create user](#create-user)
         1. [add points](#add-points)
     1. [leaderboard](#leaderboard)
+
+## setup
+
+The API is built with [Lumen](https://lumen.laravel.com/docs/6.x), Laravel's micro framework (PHP). To understand the basics, follow the official documentation.
+
+### Installation
+
+1. make sure you have PHP, SQL (My, Maria, Postgres, SQLite), composer and phpunit installed
+1. checkout the repository
+1. in your project root run `composer install`
+1. setup a sql-style database
+1. copy the `.env.example` to a `.env file`, set `APP_KEY`, APP_NAME, APP_URL and database credentials (DB_CONNECTION, DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD)
+1. in your project root run `php artisan migrate`
+
+You're all set.
+
+### Conventions
+
+This project follows the approach of TDD (as good as possible in the scope of a hackathon). When you create new code, make sure to write phpunit tests before.
 
 ## base url
 
