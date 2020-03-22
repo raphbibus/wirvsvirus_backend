@@ -19,6 +19,8 @@ class PointsTest extends TestCase
         $this->assertTrue(method_exists(App\Services\PointsService::class, 'calculatePoints'));
         $this->assertTrue(method_exists(App\Services\PointsService::class, 'updatePointsAndSeconds'));
         $this->assertTrue(method_exists(App\Services\PointsService::class, 'addPointsToClient'));
+        $this->assertTrue(method_exists(App\Services\PointsService::class, 'twelveHoursBonus'));
+        $this->assertTrue(method_exists(App\Services\PointsService::class, 'fortyEightHoursBonus'));
         $this->assertArrayHasKey('12_hours', config('points.bonus'));
         $this->assertArrayHasKey('48_hours', config('points.bonus'));
     }

@@ -7,6 +7,13 @@ use App\Client;
 class ClientsTest extends TestCase
 {
 
+    public function testClientsControllerAndModel() {
+        $this->assertTrue(class_exists(App\Http\Controllers\ClientsController::class));
+        $this->assertTrue(class_exists(App\Client::class));
+        $this->assertTrue(method_exists(App\Http\Controllers\ClientsController::class, 'show'));
+        $this->assertTrue(method_exists(App\Http\Controllers\ClientsController::class, 'store'));
+    }
+
     public function testShowClient() {
         $client = factory('App\Client')->create();
         $response = $this->call('GET', '/users/'.$client->username);
@@ -24,7 +31,6 @@ class ClientsTest extends TestCase
         $client = factory('App\Client')->make();
         $response = $this->call('GET', '/users/'.$client->username);
         $this->assertEquals($response->getStatusCode(), 404);
-        $client->delete();
     }
 
     public function testStoreClient() {
@@ -52,7 +58,6 @@ class ClientsTest extends TestCase
         $this->call('POST', '/users', ['username' => 'johndoe', 'display_name' => 'John Doe']);
         $response = $this->call('POST', '/users', ['username' => 'johndoe', 'display_name' => 'John Doe']);
         $this->assertEquals($response->getStatusCode(), 422);
-        Client::where('username','johndoe')->delete();
     }
 
 }

@@ -6,11 +6,16 @@ use App\Client;
 
 class StatsTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
+
+    public function testStatsController() {
+        $this->assertTrue(class_exists(App\InOut::class));
+        $this->assertTrue(class_exists(App\Http\Controllers\StatsController::class));
+        $this->assertTrue(method_exists(App\Http\Controllers\StatsController::class, 'show'));
+        $this->assertTrue(method_exists(App\Http\Controllers\StatsController::class, 'pointsAdd'));
+        $this->assertTrue(method_exists(App\Http\Controllers\StatsController::class, 'homeEnter'));
+        $this->assertTrue(method_exists(App\Http\Controllers\StatsController::class, 'homeLeave'));
+    }
+
     public function testShowStats()
     {
 
@@ -25,7 +30,6 @@ class StatsTest extends TestCase
     }
 
     public function testStatsAddPoints() {
-        $this->assertTrue(method_exists(App\Http\Controllers\StatsController::class, 'pointsAdd'));
         $client = factory('App\Client')->create();
         $pointsBefore = $client->points;
         $pointsToAdd = 50;
