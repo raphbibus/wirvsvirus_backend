@@ -203,6 +203,7 @@ GET leaderboard | 200 OK
 ```
 
 ```json5
+//response
 {
     "current_page": 1,
     "data": [
@@ -249,6 +250,7 @@ GET leaderboard/nation/<simple locale> | 200 OK
 A simple locale would be "de" for Germany or "it" for Italy.
 
 ```json5
+//response
 {
     "current_page": 1,
     "data": [
