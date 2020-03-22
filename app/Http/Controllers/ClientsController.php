@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Client;
 
-
-class ClientsController extends Controller
-{
+class ClientsController extends Controller {
 
     public function show($username) {
 
@@ -17,7 +15,6 @@ class ClientsController extends Controller
         } else {
             return response()->json([],404);
         }
-
 
     }
 

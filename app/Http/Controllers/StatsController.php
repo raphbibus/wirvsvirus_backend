@@ -8,8 +8,7 @@ use Str;
 use Illuminate\Http\Request;
 use App\Services\PointsService;
 
-class StatsController extends Controller
-{
+class StatsController extends Controller {
 
     public function show($username) {
 
@@ -62,6 +61,7 @@ class StatsController extends Controller
             $inOut->save();
 
             return response()->json($inOut, 201);
+
         } else {
             return response()->json([], 404);
         }
@@ -91,6 +91,7 @@ class StatsController extends Controller
                 $pointsService->updatePointsAndSeconds($client, $dtEntered, $dtLeft);
 
                 return response()->json($inOut, 201);
+
             } else {
                 return response()->json([], 404);
             }
