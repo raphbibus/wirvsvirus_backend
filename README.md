@@ -18,7 +18,7 @@
 
 ## setup
 
-The API is built with [Lumen](https://lumen.laravel.com/docs/6.x), Laravel's micro framework (PHP). To understand the basics, follow the official documentation.
+The API is built with [Lumen](https://lumen.laravel.com/docs/6.x), Laravel's micro framework (PHP). To understand the basics, follow the official documentation. A simple dev environment for Mac can be setup with [Laravel Valet](https://laravel.com/docs/6.x/valet).
 
 ### Installation
 
