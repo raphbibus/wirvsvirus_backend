@@ -18,13 +18,28 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(Client::class, function (Faker $faker) {
+
+    $nation = $faker->randomElement(['Deutschland', 'Italien', 'Spanien']);
+
+    switch ($nation) {
+        case 'Deutschland':
+            $city =  $faker->randomElement(['Berlin', 'Treppendorf', 'München']);
+            break;
+        case 'Italien':
+            $city =  $faker->randomElement(['Rom', 'Neapel', 'Venedig']);
+            break;
+        default:
+            $city =  $faker->randomElement(['Barcelona', 'Madrid', 'Palma de Mallorca']);
+            break;
+    }
+
     return [
         'username' => $faker->userName,
         'display_name' => $faker->name,
         'seconds' => $faker->numberBetween(1,2000000),
         'points' => $faker->numberBetween(10,200000),
-        'nation' => $faker->country,
-        'city' => $faker->city
+        'nation' => $nation,
+        'city' => $city,
      ];
 });
 
