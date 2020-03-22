@@ -6,12 +6,12 @@
 1. [api documentation](#api-documentation)
     1. [account management](#account-management)
         1. [get user stats](#get-user-stats)
-        2. [create entered home event](#create-entered-home-event)
-        3. [create left home event](#create-left-home-event)
-        4. [get user](#get-user)
-        5. [create user](#create-user)
-        6. [add points](#add-points)
-    2. [leaderboard](#leaderboard)
+        1. [create entered home event](#create-entered-home-event)
+        1. [create left home event](#create-left-home-event)
+        1. [get user](#get-user)
+        1. [create user](#create-user)
+        1. [add points](#add-points)
+    1. [leaderboard](#leaderboard)
 
 ## base url
 
