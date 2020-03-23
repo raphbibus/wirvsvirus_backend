@@ -14,11 +14,14 @@ class StatsController extends Controller {
 
         $client = Client::where('username',$username)->first();
 
-        return response()->json([
-            'seconds' => $client->seconds,
-            'points' => $client->points,
-        ]);
-
+        if($client != null) {
+            return response()->json([
+                'seconds' => $client->seconds,
+                'points' => $client->points,
+            ]);
+        } else {
+            return response()->json([], 404);
+        }
     }
 
     public function pointsAdd(Request $request, $username) {
