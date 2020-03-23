@@ -20,6 +20,6 @@ class AuthTest extends TestCase {
         $this->assertEquals($response->getData()->token_type, 'bearer');
         $this->assertEquals($response->getData()->expires_in, 3600);
         $this->assertGreaterThan(0, strlen($response->getData()->token));
-        Client::where('username', $client->username)->delete();
+        $client->delete();
     }
 }
