@@ -4,13 +4,14 @@ use Laravel\Lumen\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
-    protected $clientPassword;
+    protected $clientPassword = '123456';
+    protected $clientPasswordHash;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->clientPassword = app('hash')->make('123456');
+        $this->clientPasswordHash = app('hash')->make($this->clientPassword);
     }
 
     /**

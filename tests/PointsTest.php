@@ -21,7 +21,7 @@ class PointsTest extends TestCase {
     }
 
     public function testAddPointsToClient() {
-        $client = factory('App\Client')->create([ 'password' => $this->clientPassword ]);
+        $client = factory('App\Client')->create([ 'password' => $this->clientPasswordHash ]);
         $pointsService = new PointsService();
         $pointsBefore = $client->points;
         $pointsToAdd = 150;
@@ -32,7 +32,7 @@ class PointsTest extends TestCase {
     }
 
     public function testUpdatePointsAndSeconds() {
-        $client = factory('App\Client')->create([ 'password' => $this->clientPassword ]);
+        $client = factory('App\Client')->create([ 'password' => $this->clientPasswordHash ]);
         $pointsService = new PointsService();
         $dtEntered = Carbon::now();
         $dtEntered->subHour();
@@ -40,7 +40,7 @@ class PointsTest extends TestCase {
         $this->assertTrue($pointsService->updatePointsAndSeconds($client, $dtEntered, $dtLeft) instanceof App\Client);
         $client->delete();
 
-        $client = factory('App\Client')->create([ 'password' => $this->clientPassword ]);
+        $client = factory('App\Client')->create([ 'password' => $this->clientPasswordHash ]);
         $pointsService = new PointsService();
         $dtEntered = Carbon::now();
         $dtEntered->subHour();
