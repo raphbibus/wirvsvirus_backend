@@ -24,32 +24,4 @@ class AuthController extends ClientsController
 
         return $this->respondWithToken($token);
     }
-
-    public function register(Request $request)
-    {
-        $this->validate($request, [
-            'username' => 'required|unique:clients',
-            'password' => 'required|string|min:6',
-            'display_name' => 'required',
-            'nation' => 'nullable|string',
-            'city' => 'nullable|string',
-        ]);
-
-        try {
-            $storeData = ClientService::getClientStoreData($request->all());
-
-            $client = Client::create($storeData);
-
-            return response()->json([
-                'client' => $client,
-                'message' => 'Created.'
-            ], 201);
-
-        } catch (\Exception $exception) {
-            echo $exception->getMessage();
-            return response()->json([
-                'message' => 'Registration Failed.'
-            ], 409);
-        }
-    }
 }

@@ -22,6 +22,7 @@ class ClientsController extends Controller {
 
         $this->validate($request, [
             'username' => 'required|string|unique:clients',
+            'password' => 'required|string|min:6',
             'display_name' => 'required|string',
             'nation' => 'sometimes|string',
             'city' => 'sometimes|string'
@@ -30,6 +31,7 @@ class ClientsController extends Controller {
         $validated = $request->only(['username','display_name']);
         $validated['points'] = 0;
         $validated['seconds'] = 0;
+        $validated['password'] = app('hash')->make($request->input('password'));
 
         if($request->has('nation')) {
             $validated['nation'] = $request->input('nation');

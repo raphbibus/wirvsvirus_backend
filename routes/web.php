@@ -23,5 +23,4 @@ $router->post('users/{username}/home-leave', 'StatsController@homeLeave');
 $router->post('users/{username}/points-add', 'StatsController@pointsAdd');
 $router->get('leaderboard', 'LeaderboardController@show');
 $router->get('leaderboard/nation/{nation}', 'LeaderboardController@showByNation');
-$router->post('register', 'AuthController@register');
 $router->post('login', 'AuthController@login');
