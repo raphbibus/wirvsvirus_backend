@@ -14,7 +14,7 @@ class ClientsTest extends TestCase {
     }
 
     public function testShowClient() {
-        $client = factory('App\Client')->create();
+        $client = factory('App\Client')->create(['password' => $this->clientPassword]);
         $response = $this->call('GET', '/users/'.$client->username);
         $this->assertObjectHasAttribute('points',$response->getData());
         $this->assertObjectHasAttribute('seconds',$response->getData());
@@ -33,7 +33,7 @@ class ClientsTest extends TestCase {
     }
 
     public function testStoreClient() {
-        $response = $this->call('POST', '/users', ['username' => 'johndoe', 'display_name' => 'John Doe', 'nation' => 'it', 'city' => 'Rom']);
+        $response = $this->call('POST', '/users', ['username' => 'johndoe', 'display_name' => 'John Doe', 'nation' => 'it', 'city' => 'Rom', 'password' => $this->clientPassword]);
         $this->assertObjectHasAttribute('points',$response->getData());
         $this->assertObjectHasAttribute('seconds',$response->getData());
         $this->assertObjectHasAttribute('display_name',$response->getData());
@@ -54,9 +54,10 @@ class ClientsTest extends TestCase {
     }
 
     public function testStoreClientExists() {
-        $this->call('POST', '/users', ['username' => 'johndoe', 'display_name' => 'John Doe']);
-        $response = $this->call('POST', '/users', ['username' => 'johndoe', 'display_name' => 'John Doe']);
+        $this->call('POST', '/users', ['username' => 'johndoe', 'display_name' => 'John Doe', 'password' => $this->clientPassword]);
+        $response = $this->call('POST', '/users', ['username' => 'johndoe', 'display_name' => 'John Doe', 'password' => $this->clientPassword]);
         $this->assertEquals($response->getStatusCode(), 422);
+        Client::where('username','johndoe')->delete();
     }
 
 }

@@ -14,7 +14,7 @@ class LeaderboardTest extends TestCase {
     }
 
     public function testLeaderboardShow() {
-        factory('App\Client',100)->create();
+        factory('App\Client',100)->create([ 'password' => $this->clientPassword ]);
         $response = $this->call('GET', '/leaderboard');
         $this->assertEquals($response->getStatusCode(), 200);
         $responseData = $response->getData();
@@ -31,7 +31,7 @@ class LeaderboardTest extends TestCase {
 
     public function testLeaderboardShowByNation() {
         $nationToTest = 'de'; //client factory creates random nations: de, es, it
-        factory('App\Client',100)->create(); //hundred clients will make sure, that there's at least one page of the nationToTest available
+        factory('App\Client',100)->create([ 'password' => $this->clientPassword ]); //hundred clients will make sure, that there's at least one page of the nationToTest available
         $response = $this->call('GET', '/leaderboard/nation/'.$nationToTest);
         $this->assertEquals($response->getStatusCode(), 200);
         $responseData = $response->getData();
