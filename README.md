@@ -8,6 +8,7 @@
 1. [base url](#base-url)
 1. [api documentation](#api-documentation)
     1. [account management](#account-management)
+        1. [authorization](#authorization)
         1. [get user stats](#get-user-stats)
         1. [create entered home event](#create-entered-home-event)
         1. [create left home event](#create-left-home-event)
@@ -30,6 +31,7 @@ The API is built with [Lumen](https://lumen.laravel.com/docs/6.x), Laravel's mic
 1. setup a sql-style database
 1. copy the `.env.example` to a `.env file`, set `APP_KEY`, `APP_NAME`, `APP_URL` and database credentials `DB_CONNECTION DB_HOST DB_PORT DB_DATABASE DB_USERNAME DB_PASSWORD`
 1. in your project root run `php artisan migrate`
+1. in your project root run `php artisan jwt:secret` to generate JWT_SECRET environment variable
 
 You're all set.
 
@@ -54,6 +56,29 @@ content-type: application/json
 ## api documentation
 
 ### account management
+
+#### authorization
+
+```
+POST login | 200 OK | 422 on validation error | 401 Unauthorized
+```
+
+```json5
+// payload
+{
+    "username":  "<some username>",
+    "password":  "<some password>"
+}
+```
+
+```json5
+//response
+{
+    "token": "<eyJ0eX123iJKV1QiLCJhbGciOiJIUzI1NiJ9.123pc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6O123MFwvbG9naW4iLCJpYXQiOjE1ODQ5NzU3NzgsImV4cCI6MTU4NDk3OTM3OCwibmJmIjoxNTg0OTc1Nzc4LCJqdGkiOiJZY0NQSEdxNG1IM2Q1clBuIiwic3ViIjoxMTQ1LCJwcnYiOiIzNzg3ZmJhMTYxOGE5MzA1MjZhY2E2YzhiYjliNDRiODNmMjk3NzI2In0.Ek40iSSXvzlr63Ec0k8tHtQTuYwpkQ123yv1RWYWaHA>",
+    "token_type": "bearer",
+    "expires_in": 3600
+}
+```
 
 #### get user stats
 
