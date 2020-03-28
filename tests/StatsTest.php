@@ -16,7 +16,7 @@ class StatsTest extends TestCase {
     }
 
     public function testShowStats() {
-        $client = factory('App\Client')->create();
+        $client = factory('App\Client')->create(['password' => $this->clientPasswordHash]);
         $response = $this->call('GET', '/users/'.$client->username.'/stats');
         $this->assertObjectHasAttribute('points',$response->getData());
         $this->assertObjectHasAttribute('seconds',$response->getData());
@@ -25,7 +25,7 @@ class StatsTest extends TestCase {
     }
 
     public function testStatsAddPoints() {
-        $client = factory('App\Client')->create();
+        $client = factory('App\Client')->create(['password' => $this->clientPasswordHash]);
         $pointsBefore = $client->points;
         $pointsToAdd = 50;
         $response = $this->call('POST', '/users/'.$client->username.'/points-add', ['points' => $pointsToAdd]);
@@ -43,14 +43,14 @@ class StatsTest extends TestCase {
     }
 
     public function testStatsAddPointsInvalidNumber() {
-        $client = factory('App\Client')->create();
+        $client = factory('App\Client')->create(['password' => $this->clientPasswordHash]);
         $response = $this->call('POST', '/users/'.$client->username.'/points-add', ['points' => 50.2]);
         $this->assertEquals($response->getStatusCode(), 422);
         $client->delete();
     }
 
     public function testStatsCheckin() {
-        $client = factory('App\Client')->create();
+        $client = factory('App\Client')->create(['password' => $this->clientPasswordHash]);
         $response = $this->call('POST', '/users/'.$client->username.'/home-enter', ['timestamp' => '2020-03-21T10:50:22.000000Z']);
         $this->assertEquals($response->getStatusCode(), 201);
         $this->assertObjectHasAttribute('entered',$response->getData());
@@ -64,14 +64,14 @@ class StatsTest extends TestCase {
     }
 
     public function testStatsCheckinWrongTimeStampFormat() {
-        $client = factory('App\Client')->create();
+        $client = factory('App\Client')->create(['password' => $this->clientPasswordHash]);
         $response = $this->call('POST', '/users/'.$client->username.'/home-enter', ['timestamp' => 'shingshong']);
         $this->assertEquals($response->getStatusCode(), 422);
         $client->delete();
     }
 
     public function testStatsCheckout() {
-        $client = factory('App\Client')->create();
+        $client = factory('App\Client')->create(['password' => $this->clientPasswordHash]);
         $inOut = factory('App\InOut')->create();
         $clientInOut = Client::findOrFail($inOut->client_id);
         $response = $this->call('POST', '/users/'.$clientInOut->username.'/home-leave', ['token' => $inOut->token, 'timestamp' => '2020-03-21T15:50:22.000000Z']);
@@ -89,7 +89,7 @@ class StatsTest extends TestCase {
     }
 
     public function testStatsCheckoutTokenNotExists() {
-        $client = factory('App\Client')->create();
+        $client = factory('App\Client')->create(['password' => $this->clientPasswordHash]);
         $inOut = factory('App\InOut')->make();
         $response = $this->call('POST', '/users/'.$client->username.'/home-leave', ['token' => $inOut->token, 'timestamp' => '2020-03-21T15:50:22.000000Z']);
         $this->assertEquals($response->getStatusCode(), 422);
@@ -97,8 +97,8 @@ class StatsTest extends TestCase {
     }
 
     public function testStatsCheckoutTokenNotFromClient() {
-        $clientWithoutToken = factory('App\Client')->create();
-        $clientWithToken = factory('App\Client', 1)->create()->each(function ($client) {
+        $clientWithoutToken = factory('App\Client')->create(['password' => $this->clientPasswordHash]);
+        $clientWithToken = factory('App\Client', 1)->create(['password' => $this->clientPasswordHash])->each(function ($client) {
             $client->inouts()->save(factory('App\InOut')->make());
         });
         $inOut = $clientWithToken[0]->inouts()->inRandomOrder()->first();
@@ -109,7 +109,7 @@ class StatsTest extends TestCase {
     }
 
     public function testStatsCheckoutTokenSizeWrong() {
-        $client = factory('App\Client')->create();
+        $client = factory('App\Client')->create(['password' => $this->clientPasswordHash]);
         $inOut = factory('App\InOut')->make();
         $response = $this->call('POST', '/users/'.$client->username.'/home-leave', ['token' => 'blabliblubb', 'timestamp' => '2020-03-21T15:50:22.000000Z']);
         $this->assertEquals($response->getStatusCode(), 422);
@@ -117,7 +117,7 @@ class StatsTest extends TestCase {
     }
 
     public function testStatsCheckoutWrongTimeStampFormat() {
-        $client = factory('App\Client')->create();
+        $client = factory('App\Client')->create(['password' => $this->clientPasswordHash]);
         $inOut = factory('App\InOut')->make();
         $response = $this->call('POST', '/users/'.$client->username.'/home-leave', ['token' => md5('xyz'), 'timestamp' => 'shingshong']);
         $this->assertEquals($response->getStatusCode(), 422);
