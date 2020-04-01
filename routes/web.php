@@ -24,3 +24,7 @@ $router->post('users/{username}/points-add', 'StatsController@pointsAdd');
 $router->get('leaderboard', 'LeaderboardController@show');
 $router->get('leaderboard/nation/{nation}', 'LeaderboardController@showByNation');
 $router->post('login', 'AuthController@login');
+
+$router->get('/blabla', function () use ($router) {
+    return $router->app->version();
+});
